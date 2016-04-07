@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" ng-app="MissingDogApp"><head>
+	<meta charset="utf-8" />
+	<meta content="width=device-width,initial-scale=1" name="viewport" />
+	<title>Missing Dogs!</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.1/angular.min.js"></script>
+	<script src="https://code.angularjs.org/1.5.0-rc.1/angular-route.min.js"></script>
+	
+	<script src="js/app.js"></script>
+	<script src="js/controllers.js"></script>
+	
+		<!-- Latest compiled and minified CSS -->
+	<link crossorigin="anonymous" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+
+		<!-- Optional theme -->
+	<link crossorigin="anonymous" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" rel="stylesheet" />
+
+	<link href="css/styles.css" rel="stylesheet" />
+
+	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
+	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Boogaloo" />
+
+	<link type="image/x-icon" href="images/favicon.ico" rel="shortcut icon" />
+	<link type="image/x-icon" href="images/favicon.ico" rel="icon" />
+
+</head>
+<body ng-controller="MainController">
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid index">
+		
+			<div class="navbar-header">
+
+				<a href="#/homepage" class="navbar-brand"><b>MISSING DOGS!</b></a>
+
+			</div>	
+
+			<div id="missingdog">
+				<ul class="nav navbar-nav">
+					<li ng-class="{ active: isActive('/findmissingdogs')}"><a href="#/findmissingdogs">Finder </a></li>
+					<li ng-class="{ active: isActive('/newmissingdog')}"><a href="#/newmissingdog">New Missing Dog</a></li>
+
+				</ul>			
+			</div>
+		</div>
+	</nav>
+
+	
+	
+
+	<div ng-view=""></div>
+
+	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script crossorigin="anonymous" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
+
+</body></html>

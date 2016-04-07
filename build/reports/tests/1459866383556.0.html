@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" ng-app="MissingDogApp" class="ng-scope"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+	<meta charset="utf-8" />
+	<meta content="width=device-width,initial-scale=1" name="viewport" />
+	<title>Missing Dogs!</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.1/angular.min.js"></script>
+	<script src="https://code.angularjs.org/1.5.0-rc.1/angular-route.min.js"></script>
+	
+	<script src="js/app.js"></script>
+	<script src="js/controllers.js"></script>
+	
+		<!-- Latest compiled and minified CSS -->
+	<link crossorigin="anonymous" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+
+		<!-- Optional theme -->
+	<link crossorigin="anonymous" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" rel="stylesheet" />
+
+	<link href="css/styles.css" rel="stylesheet" />
+
+	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
+	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Boogaloo" />
+
+	<link type="image/x-icon" href="images/favicon.ico" rel="shortcut icon" />
+	<link type="image/x-icon" href="images/favicon.ico" rel="icon" />
+
+</head>
+<body ng-controller="MainController" class="ng-scope">
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid index">
+		
+			<div class="navbar-header">
+
+				<a href="#/homepage" class="navbar-brand"><b>MISSING DOGS!</b></a>
+
+			</div>	
+
+			<div id="missingdog">
+				<ul class="nav navbar-nav">
+					<li ng-class="{ active: isActive('/findmissingdogs')}"><a href="#/findmissingdogs">Finder </a></li>
+					<li ng-class="{ active: isActive('/newmissingdog')}" class="active"><a href="#/newmissingdog">New Missing Dog</a></li>
+
+				</ul>			
+			</div>
+		</div>
+	</nav>
+
+	
+	
+
+	<!-- ngView:  --><div ng-view="" class="ng-scope">	
+
+<div class="container tarjetas2 ng-scope">
+
+	
+	<div class="row">
+	 <div class="col-lg-8 col-lg-push-2 col-md-8 col-md-push-2 col-sm-8 col-sm-push-2 col-xs-10 col-xs-push-1">
+	
+			<form class="form-horizontal ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" ng-submit="addDog()">
+
+				<h1 class="text-center">New Missing Dog</h1>
+
+				<div class="form-group">
+
+					<label>Race</label>
+
+					<select ng-model="newDog.race" ng-options="item as item.name for item in items" class="form-control ng-pristine ng-valid ng-not-empty ng-touched" autofocus=""><option label="Beagle" value="object:5">Beagle</option><option label="Boston Terrier" value="object:6">Boston Terrier</option><option label="Bulldog" value="object:7">Bulldog</option><option label="Boxer" value="object:8">Boxer</option><option label="Chow Chow" value="object:9">Chow Chow</option><option label="Cocker" value="object:10">Cocker</option><option label="Dogo Argentino" value="object:11">Dogo Argentino</option><option label="Dogo de Burdeos" value="object:12">Dogo de Burdeos</option><option label="Galgo Ingles" value="object:13">Galgo Ingles</option><option label="Gran Danes" value="object:14">Gran Danes</option><option label="Labrador" value="object:15">Labrador</option><option label="Maltes" value="object:16">Maltes</option><option label="Pekines" value="object:17">Pekines</option><option label="Pointer" value="object:18">Pointer</option><option label="Presa Canario" value="object:19">Presa Canario</option><option label="Rottweiler" value="object:20">Rottweiler</option><option label="San Bernardo" value="object:21">San Bernardo</option><option label="Shar Pei" value="object:22">Shar Pei</option><option label="Shih Tzu" value="object:23">Shih Tzu</option><option label="Springer Spaniel" value="object:24">Springer Spaniel</option><option label="Terrier Australiano" value="object:25">Terrier Australiano</option><option label="Terrier Gales" value="object:26">Terrier Gales</option></select>
+
+					<br />
+
+					<div align="center">
+				    <img width="35%;" class="img-thumbnail" src="images/Beagle.jpg" />	
+				    </div>
+				</div>
+
+				<div class="form-group">
+					<label for="race">Name</label>
+					<input type="text" ng-model="newDog.name" required="" placeholder="Missing dog name" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-maxlength" maxlength="50" />
+				</div>
+
+				<div class="form-group">
+					<label for="race">Description</label>
+					<textarea ng-model="newDog.description" required="" placeholder="Missing dog descripcion" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-maxlength" type="text" maxlength="1000"></textarea>
+				</div>
+
+				<div class="form-group">
+					<label for="race">Lost Location</label>
+					<textarea ng-model="newDog.lostlocation" required="" placeholder="Missing dog lost location" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-maxlength" type="text" maxlength="1000"></textarea>
+				</div>
+				
+				<button type="submit" class="btn btn-lg btn-primary btn-block">New Missing Dog</button>
+				<br />
+			</form>
+
+	 </div>
+	</div>
+</div>
+
+</div>
+
+	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script crossorigin="anonymous" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
+
+</body></html>

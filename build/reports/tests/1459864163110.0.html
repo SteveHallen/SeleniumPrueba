@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" ng-app="MissingDogApp" class="ng-scope"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+	<meta charset="utf-8" />
+	<meta content="width=device-width,initial-scale=1" name="viewport" />
+	<title>Missing Dogs!</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-rc.1/angular.min.js"></script>
+	<script src="https://code.angularjs.org/1.5.0-rc.1/angular-route.min.js"></script>
+	
+	<script src="js/app.js"></script>
+	<script src="js/controllers.js"></script>
+	
+		<!-- Latest compiled and minified CSS -->
+	<link crossorigin="anonymous" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+
+		<!-- Optional theme -->
+	<link crossorigin="anonymous" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" rel="stylesheet" />
+
+	<link href="css/styles.css" rel="stylesheet" />
+
+	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins" />
+	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Boogaloo" />
+
+	<link type="image/x-icon" href="images/favicon.ico" rel="shortcut icon" />
+	<link type="image/x-icon" href="images/favicon.ico" rel="icon" />
+
+</head>
+<body ng-controller="MainController" class="ng-scope">
+
+	<nav class="navbar navbar-default">
+		<div class="container-fluid index">
+		
+			<div class="navbar-header">
+
+				<a href="#/homepage" class="navbar-brand"><b>MISSING DOGS!</b></a>
+
+			</div>	
+
+			<div id="missingdog">
+				<ul class="nav navbar-nav">
+					<li ng-class="{ active: isActive('/findmissingdogs')}" class="active"><a href="#/findmissingdogs">Finder </a></li>
+					<li ng-class="{ active: isActive('/newmissingdog')}" class=""><a href="#/newmissingdog">New Missing Dog</a></li>
+
+				</ul>			
+			</div>
+		</div>
+	</nav>
+
+	
+	
+
+	<!-- ngView:  --><div ng-view="" class="ng-scope">
+
+<div class="container tarjetas ng-scope">
+
+	<div class="row">
+
+		<div class="col-lg-4 col-lg-push-4 col-md-6 col-md-push-3 col-sm-6 col-sm-push-3 col-xs-10 col-xs-push-1">
+
+			<form class="form-horizontal ng-pristine ng-invalid ng-invalid-required" ng-submit="getByRace()">
+
+					<div class="form-group">
+						<div class="text-center">
+							<h1 for="race">Type a Race</h1>
+						</div>
+					
+						<input type="text" ng-model="findby.race" required="" autofocus="" placeholder="Missing dog race" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" />
+					</div>
+
+
+					<button type="submit" class="btn btn-lg btn-primary btn-block">Search</button>
+				</form>
+
+               	<button class="btn btn-lg btn-default btn-block" ng-click="getAll()">Show All</button>   
+
+				<br />
+               	</div>
+		</div>
+	</div>
+
+
+<!-- ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Beagle.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">29</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">asd</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Beagle</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">asdasd</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">asdas</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Dogo%20Argentino.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">33</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">asd</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Dogo Argentino</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">asd</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">asd</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Dogo%20de%20Burdeos.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">30</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">asd</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Dogo de Burdeos</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">asd</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">asd</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Dogo%20de%20Burdeos.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">32</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">asc</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Dogo de Burdeos</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">ascascasc</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">asc</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Galgo%20Ingles.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">31</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">asdas</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Galgo Ingles</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">dasda</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">sasd</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Labrador.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">34</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">asd</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Labrador</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">asd</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">asd</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Maltes.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">35</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">random</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Maltes</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">random</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">random</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Maltes.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">36</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">random</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Maltes</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">random</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">random</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Maltes.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">37</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">d17522f4c17e405</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Maltes</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">e5ab503025b7484</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">a9d976548e5b45a</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Maltes.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">38</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">ead6aae4bc49471</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Maltes</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">54845693e05d461</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">564d7f78ef004ad</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Maltes.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">39</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">094778692a9c4b0</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Maltes</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">05f4d7c20e4f4d2</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">076fcfe4448f45c</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Maltes.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">40</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">917c6959a07b4c7</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Maltes</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">934f7363bf4044c</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">a58aa06400df4f3</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Maltes.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">41</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">6af956e77f4944b</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Maltes</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">db959cb7785a425</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">60ee5be6b9d44b5</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Maltes.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">42</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">61baba1034b54ba</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Maltes</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">459689dc94414e4</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">07a5e65967454d8</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Maltes.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">43</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">5f1bbf2ef308411</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Maltes</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">9e1810243b4f4ea</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">5daa1df89b99408</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Maltes.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">44</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">49fbf7137fa04fc</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Maltes</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">e38ff14c9f7b47c</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">9a2b2785a0de42f</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Maltes.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">45</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">b06fcbc942ae4ca</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Maltes</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">b71c9ff845a24de</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">6b5d969d7f61464</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Maltes.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">46</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">289c165c0b2b4eb</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Maltes</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">67a5bf772bc249f</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">f4e2674be7d744f</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Maltes.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">47</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">f12360041b26469</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Maltes</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">ef872111f30c4b1</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">f1f9adccc2fe4d6</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' --><div ng-repeat="dog in dogs |orderBy: 'race'" class="ng-scope">
+	
+		<div class="container well">
+
+		<div class="row">
+
+		<div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+		
+			<div align="center">
+				<img width="100%;" class="img-thumbnail" src="images/Maltes.jpg" />
+			</div>		
+		
+			<div class="title">ID MissingDog</div>
+			<div class="name ng-binding">48</div>
+
+			<div class="title">Name</div>
+			<div class="name ng-binding">857b36166193471</div>
+				
+			<div class="title">Race</div>
+			<div class="race ng-binding">Maltes</div>
+
+			<div class="hidden-xs">
+		
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+				
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+
+		</div>
+
+		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+		
+			<div class="title">Description</div>
+			<div class="description ng-binding">02a1d726a1d94a1</div>
+
+			<div class="title">Lost Location</div>
+			<div class="lostlocation ng-binding">2634f385f330463</div>		
+
+			<div class="visible-xs">
+	
+
+				<div class="title">State</div>
+				<div =="" ng-class="{'lost': dog.stateoffinding=='Lost','possiblefounded': dog.stateoffinding=='PossibleFounded'}" class="ng-binding lost">Lost</div>
+
+				<button ng-click="update(dog,'Lost')" class="btn btn-lg btn-pill btn-danger" type="button">Lost</button>
+				<button ng-click="update(dog,'PossibleFounded')" class="btn btn-lg btn-pill btn-success" type="button">Possibly found</button>
+
+			</div>
+			
+		</div>
+
+		</div>
+
+	</div>
+
+</div><!-- end ngRepeat: dog in dogs |orderBy: 'race' -->
+
+
+</div>
+
+	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script crossorigin="anonymous" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
+
+</body></html>
